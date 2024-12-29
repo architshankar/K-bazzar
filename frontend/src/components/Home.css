@@ -1,0 +1,940 @@
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* CSS for Loader and Blurring Effect */
+.content-wrapper.blurred {
+    filter: blur(5px);
+}
+
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.lds-hourglass {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  
+  .lds-hourglass:after {
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+    margin: 8px;
+    box-sizing: border-box;
+    border: 32px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-hourglass 1.2s infinite;
+  }
+  
+  @keyframes lds-hourglass {
+    0% {
+      transform: rotate(0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+  
+    50% {
+      transform: rotate(900deg);
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+  
+    100% {
+      transform: rotate(1800deg);
+    }
+  }
+  
+
+/* @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+} */
+
+
+
+.product-list {
+    display: flex;
+
+}
+
+.content-wrapper {
+    transition: filter 0.3s ease; /* Smooth transition for blur effect */
+}
+
+.content-wrapper.blurred {
+    filter: blur(5px); /* Adjust the blur intensity as needed */
+    pointer-events: none; /* Prevent interaction with blurred content */
+}
+
+.centered-success-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+}
+
+
+
+.add-product-form {
+    background: #000;
+    /* height: 100vh; */
+    display: flex;
+    flex-direction: column;
+}
+
+.addprod {
+    font-size: 65px;
+}
+
+/* .add-product-form-header{
+    font-size: 65px;
+    color: wheat;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    
+} */
+
+.add-product-form-info {
+    color: wheat;
+    padding: 10px;
+    font-size: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.upload-pics {
+    display: flex;
+    padding: 20px;
+}
+
+.upload-pic1 {
+    padding-left: 10px;
+}
+
+
+.upload-pic2 {
+    padding-left: 10px;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+
+.error-message {
+    color: #ff4d4d;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+}
+
+.form-control {
+    background-color: transparent;
+    border: 2px solid white;
+    color: var(--light);
+    max-width: 510px;
+    padding: .5rem;
+    border-radius: var(--br);
+    outline: none;
+    opacity: .8;
+    transition: .2s ease-in-out;
+    font-family: 'DMSans_36pt-Medium', serif;
+    /* Added font family */
+}
+
+
+/* Default placeholder color (for other hostels) */
+.form-control::placeholder {
+    color: white;
+    /* white placeholder color for other hostels */
+}
+
+/* Dark placeholder color for KP or QC hostels */
+.form-control.placeholder-dark::placeholder {
+    color: black;
+    /* black placeholder color for KP or QC */
+}
+
+
+.hostel-num {
+    background-color: transparent;
+    border: 2px solid white;
+    color: var(--light);
+    max-width: 510px;
+    padding: .5rem;
+    border-radius: var(--br);
+    outline: none;
+    opacity: .8;
+    transition: .2s ease-in-out;
+    font-family: 'DMSans_36pt-Medium', serif;
+    /* Added font family */
+}
+
+/* Placeholder text default (white when not clicked) */
+.hostel-num::placeholder {
+    color: white;
+    opacity: 0.8;
+    /* Optional: control opacity for placeholder */
+}
+
+/* On focus, change placeholder text color to black */
+.hostel-num:focus::placeholder {
+    color: black;
+    opacity: 1;
+    /* Optional: make placeholder fully visible */
+}
+
+
+.add-product-form-info-left {
+    padding-left: 40px;
+}
+
+.outer-add-prod-info {
+    padding-top: 20px;
+}
+
+.upload-pics {
+    display: flex;
+    gap: 20px;
+}
+
+.upload-pic1,
+.upload-pic2 {
+    flex: 1;
+}
+
+.file-preview {
+    margin-top: -5px;
+    font-size: 14px;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 40px;
+}
+
+.submit-product {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-submit {
+    background-color: transparent;
+    border: 2px solid white;
+    color: var(--light);
+    width: 200px;
+    /* Increased width for a longer button */
+    padding: 1rem;
+    /* Increased padding for a larger button */
+    border-radius: var(--br);
+    outline: none;
+    opacity: .8;
+    transition: .2s ease-in-out;
+    cursor: pointer;
+    /* Changes the cursor to a pointer on hover */
+    font-size: 1.2rem;
+    /* Optional: adjust font size if needed */
+}
+
+.btn-submit:hover {
+    opacity: 1;
+    /* Increases opacity on hover for better visibility */
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Light background on hover */
+}
+
+
+/* .header-container{
+    display: flex;
+    z-index: 1;
+}
+.catagory-container{
+    z-index: 1;
+} */
+
+
+.home-parent {
+    background-size: cover;
+    height: 124vh;
+    width: 98vw;
+    background-position: right;
+}
+
+.catagoryPage-container {
+    background-color: #000;
+    min-height: 100vh;
+}
+
+
+.form-cont {
+    width: 308px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding-left: 611px;
+    padding-top: 145px;
+}
+
+.login-background {
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    /* Ensures the image covers the container */
+    background-position: center center;
+    /* Centers the image */
+    background-repeat: no-repeat;
+}
+
+.signup-background {
+    height: 100vh;
+
+    background-size: cover;
+    /* Ensures the image covers the container */
+    background-position: center center;
+    /* Centers the image */
+    background-repeat: no-repeat;
+}
+
+.formSignup {
+    padding-top: 140px;
+}
+
+.login-contain {
+    position: absolute;
+    height: 100px;
+    width: 200px;
+}
+
+.home-parent-parent {
+    background: black;
+}
+
+.home-cat {
+    background-color: black;
+    height: 100vh;
+}
+
+.home-footer {}
+
+
+
+.cat-electric-outer {
+    /* background-color: #545454; */
+    /* height: 55vh; */
+    padding: 0px 40px 0px 40px;
+    overflow: hidden;
+    background: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 100%);
+    /* Smoothly blends the black of lower div into the upper image */
+    background-color: #000;
+    padding-top: 100px;
+}
+
+/* this is for containing all the products in a specific catagory in catagory Page */
+.cataContainer {
+    padding: 40px;
+}
+
+.cat-heading {
+    font-size: 50px;
+    padding-left: 20px;
+    color: white;
+}
+
+.category-heading {
+    font-size: 45px;
+    padding-left: 20px;
+    color: white;
+}
+
+.cat-subheading {
+    font-size: 15px;
+    padding-left: 39px;
+    margin: -15px;
+    cursor: pointer;
+    color: #818181;
+    padding-bottom: 12px;
+}
+
+/* Items Container Styling */
+.cat-items {
+    padding-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 29px;
+    justify-content: space-between;
+    /* height: 400px; */
+    padding-bottom: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+
+}
+
+/* Individual Items Styling */
+.cat-item {
+    flex: 1 1 calc(var(--cat-item-width, 30%) - 15px);
+    /* Reduce from 33.33% to 30% */
+    /* Each item now takes up 30% of the row, subtracting the gap */
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-width: 380px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* height: 380px; */
+    width: 20px;
+}
+
+.item-name {
+    font-size: 16px;
+    font-weight: bold;
+    flex: 1;
+    /* Ensures it takes up the remaining space */
+    font-size: 20px;
+}
+
+.item-price {
+    font-size: 14px;
+    font-weight: normal;
+    color: #d9534f;
+    /* You can adjust the color as needed */
+    font-size: 20px;
+}
+
+
+.item-pic {
+    height: 300px;
+    background-color: #363636;
+}
+
+.item-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+}
+
+.button-delete {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(20, 20, 20);
+    border: none;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+    cursor: pointer;
+    transition-duration: 0.3s;
+    overflow: hidden;
+    position: relative;
+    gap: 1px;
+}
+
+.svgIcon {
+    width: 12px;
+    transition-duration: 0.3s;
+}
+
+.svgIcon path {
+    fill: white;
+}
+
+.button-delete:hover {
+    width: 140px;
+    border-radius: 50px;
+    transition-duration: 0.3s;
+    background-color: rgb(255, 69, 69);
+    align-items: center;
+    gap: 0;
+}
+
+.button-delete:hover .bin-bottom {
+    width: 50px;
+    transition-duration: 0.3s;
+    transform: translateY(60%);
+}
+
+.bin-top {
+    transform-origin: bottom right;
+}
+
+.button-delete:hover .bin-top {
+    width: 50px;
+    transition-duration: 0.3s;
+    transform: translateY(60%) rotate(160deg);
+}
+
+.button-delete::before {
+    position: absolute;
+    top: -20px;
+    content: "Delete";
+    color: white;
+    transition-duration: 0.3s;
+    font-size: 2px;
+}
+
+.button-delete:hover::before {
+    font-size: 13px;
+    opacity: 1;
+    transform: translateY(35px);
+    transition-duration: 0.3s;
+}
+
+.button-delete-cont {
+    bottom: 345px;
+    position: relative;
+    left: 5px;
+
+
+}
+
+.cat-item:hover {
+    transform: scale(1.05);
+    /* Enlarge slightly on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Enhanced shadow on hover */
+}
+
+.see-more-link {
+    text-decoration: none;
+    color: inherit;
+    /* You can adjust this based on your design */
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.see-more-link:hover {
+    color: #007bff;
+    /* You can adjust the hover effect as needed */
+}
+
+.ProductDetail-outer {
+    background-color: #000;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.ProductDetail-body {
+    padding: 40px;
+    display: flex;
+}
+
+.ProductDetail-image {
+    padding-top: 45px;
+    padding-left: 20px;
+
+}
+
+.rounded-image {
+    border-radius: 20px;
+    /* Rounded corners */
+    border: 0.5px solid #ffffff;
+    /* Optional: Add a border */
+}
+
+.ProductDetail-name {
+    font-size: 50px;
+    color: #FAFAFACC;
+}
+
+.ProductDetail-price {
+    font-size: 28px;
+    color: #FAFAFACC;
+    padding-left: 10px;
+}
+
+.ProductDetail-desc {
+    padding-left: 50px;
+    padding-top: 55px;
+}
+
+.ProductDetail-descFull {
+    width: 580px;
+    padding-top: 20px;
+    font-size: 17px;
+    color: #FAFAFACC;
+}
+
+.show-contact-button-container {
+    padding-top: 60px;
+}
+
+.show-contact-info-container {
+    padding-top: 40px;
+    padding-left: 10px;
+    color: rgb(224, 224, 224);
+}
+
+.show-contact-button {
+    height: 50px;
+    margin: 5px;
+    width: 175px;
+    background: #333;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+    font-family: Consolas, Courier New, monospace;
+    border: solid #404c5d 1px;
+    font-size: 16px;
+    color: rgb(161, 161, 161);
+    transition: 500ms;
+    border-radius: 5px;
+    background: linear-gradient(145deg, #2e2d2d, #212121);
+    box-shadow:
+        -1px -5px 15px #41465b,
+        5px 5px 15px #41465b,
+        inset 5px 5px 10px #212121,
+        inset -5px -5px 10px #212121;
+}
+
+.show-contact-button:hover {
+    box-shadow:
+        1px 1px 13px #20232e,
+        -1px -1px 13px #545b78;
+    color: #d6d6d6;
+    transition: 500ms;
+}
+
+.show-contact-button:active {
+    box-shadow:
+        1px 1px 13px #20232e,
+        -1px -1px 33px #545b78;
+    color: #d6d6d6;
+    transition: 100ms;
+}
+
+
+.intro-l1 {
+    font-size: 65px;
+    font-weight: bold;
+    text-shadow: 0px 0px 0.1px #484848, 2px 0.5px 2px black;
+    margin-bottom: -15px;
+    letter-spacing: -2.5px;
+}
+
+.intro-l2 {
+    font-size: 25px;
+    font-weight: lighter;
+    padding-left: 7px;
+    text-shadow: 0px 0px 0.1px #484848, 2px 0.5px 2px black;
+    letter-spacing: -0.5px;
+}
+
+.intro-text {
+    position: absolute;
+    /* Use absolute positioning */
+    bottom: 48px;
+    left: 49px;
+    padding: 10px;
+    /* Optional: Add padding inside the corner div */
+
+    color: white;
+    /* Text color */
+    border-radius: 5px;
+    /* Optional: Rounded corners */
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    /* 12-column layout */
+    grid-gap: 10px;
+    /* Spacing between items */
+    width: 100%;
+    /* Full width */
+    grid-auto-rows: auto;
+    /* Adjust row height based on content */
+}
+
+.row-1 {
+    grid-column: 1 / 9;
+    /* Spans columns 1 to 8 */
+
+    padding: 10px;
+    /* Adds spacing inside the div */
+    padding-left: 75px;
+}
+
+.row-2-left {
+    grid-column: 1 / 7;
+    /* Spans columns 1 to 6 */
+
+    padding: 10px;
+}
+
+.row-2-right {
+    grid-column: 7 / 10;
+    /* Spans columns 7 to 9 */
+
+    padding: 10px;
+}
+
+.row-3 {
+    grid-column: 1 / 9;
+    /* Spans columns 1 to 8 */
+
+    padding: 10px;
+    display: grid;
+    justify-items: end;
+}
+
+/* emerging block after + is clicked */
+/* From Uiverse.io by Thomasfadi */
+.cards {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+
+}
+
+/* Default hidden rows */
+.hidden {
+    display: none;
+}
+
+/* Make them visible */
+.visible {
+    /* display: block; */
+}
+
+/* Base fade style */
+/* Base fade style */
+.fade {
+    opacity: 0;
+    /* Start invisible */
+    display: none;
+    /* Start as not displayed */
+    transition: opacity 0.5s ease-in-out;
+    /* Smooth transition for fade effect */
+}
+
+/* Visible state */
+.fade-in {
+    opacity: 1;
+    /* Fully visible */
+    display: block;
+    /* Ensure visible */
+}
+
+/* Hidden state */
+.fade-hidden {
+    opacity: 0;
+    /* Fully hidden */
+    display: none;
+    /* Ensure not taking space */
+}
+
+
+/* .cards .red {
+    background-color: #007e9e;
+}
+
+.cards .blue {
+    background-color: #0062ff;
+}
+
+.cards .green {
+    background-color: #18cd5e;
+} */
+
+.cards .card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 100px;
+    width: 100px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: transform 400ms, filter 400ms;
+    /* Add filter transition */
+    width: 170px;
+    height: 45px;
+}
+
+.cards .card p.tip {
+    font-size: 1em;
+    font-weight: 700;
+}
+
+.cards .card p.second-text {
+    font-size: 0.7em;
+}
+
+.cards .card:hover {
+    transform: scale(1.2);
+    /* Scale hovered card */
+    z-index: 1;
+    /* Ensure hovered card stays above others */
+}
+
+.cards:hover .card:not(:hover) {
+    filter: blur(5px);
+    /* Apply blur to non-hovered cards */
+    transform: scale(0.9);
+    /* Slightly shrink non-hovered cards */
+}
+
+
+.add-prod-bottom {
+    position: fixed;
+    /* Use fixed positioning to make it sticky */
+    bottom: -173px;
+    /* Distance from the bottom of the viewport */
+    left: 890px;
+    /* Distance from the left of the viewport */
+    padding: 10px;
+    /* Add padding inside the element */
+    color: white;
+    /* Text color */
+    border-radius: 5px;
+    /* Optional: Rounded corners */
+
+    z-index: 1000;
+    /* Ensure it stays above other elements */
+}
+
+
+.catagory-container {
+    padding-top: 120px;
+}
+
+@font-face {
+
+    font-family: 'Satoshi-Bold';
+
+    src: url('../fonts/Satoshi-Bold.otf') format('truetype');
+
+}
+
+@font-face {
+
+    font-family: 'Sansation_Regular';
+
+    src: url('../fonts/Sansation_Regular.ttf') format('truetype');
+
+}
+
+@font-face {
+
+    font-family: 'dm-sans-9pt-regular.ttf';
+
+    src: url('../fonts/dm-sans-9pt-regular.ttf') format('truetype');
+
+}
+
+@font-face {
+
+    font-family: 'DMSans_24pt-Bold';
+
+    src: url('../fonts/DMSans_24pt-Bold.ttf') format('truetype');
+
+}
+
+@font-face {
+
+    font-family: 'DMSerifText-Regular';
+
+    src: url('../fonts/DMSerifText-Regular.ttf') format('truetype');
+
+}
+
+@font-face {
+
+    font-family: 'DMSans_36pt-Medium';
+
+    src: url('../fonts/DMSans_36pt-Medium.ttf') format('truetype');
+
+}
+
+
+@font-face {
+
+    font-family: 'work-sans.regular';
+
+    src: url('../fonts/work-sans.regular.ttf') format('truetype');
+
+}
+
+
+@font-face {
+
+    font-family: 'Electrolize-Regular';
+
+    src: url('../fonts/Electrolize-Regular.ttf') format('truetype');
+
+}
+
+.icon-con {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    padding: 7px;
+    background-color: #fff;
+    margin: 7px;
+}
+
+.icons:hover {
+    color: red;
+}
+
+.icons {
+    font-size: 32px;
+    height: 32px;
+    width: 32px;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.links {
+    text-decoration: none;
+    font-size: 35px;
+    color: #ffffff;
+    /* font-weight: bold; */
+
+}
+
+.price-text {
+    color: #002f34;
+}
+
+.clear-btn {
+    height: 22px;
+    padding: 0px 15px;
+    background-color: #ffffff;
+    color: #101010;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 12px;
+}

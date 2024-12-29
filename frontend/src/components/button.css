@@ -1,0 +1,42 @@
+/* Container for the button */
+.button-container {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: transparent; /* Transparent button background */
+    transform: scale(1.9);
+    transition: transform 0.3s ease; /* Smooth rotation animation */
+  }
+  
+  /* Rotate effect when button is clicked */
+  .button-container.rotated {
+    transform: rotate(90deg);
+  }
+  
+  /* SVG icon styling */
+  .button-icon {
+    stroke: #ffffff; /* Teal-500 color */
+    fill: none;
+    transition: fill 0.3s ease, stroke 0.3s ease; /* Smooth color transitions */
+  }
+  
+  /* Hover effect for button */
+  .button-container:hover .button-icon {
+    fill: #4e4e4e; /* Teal-800 color */
+  }
+  
+  /* Active state when button is pressed */
+  .button-container:active .button-icon {
+    fill: #4e4e4e; /* Teal-600 color */
+    stroke: #4e4e4e; /* Teal-200 color */
+    transition-duration: 0s; /* Remove delay during active state */
+  }
+  
+  /* Container positioning */
+  .add-prod-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust height to your needs */
+  }
+  
