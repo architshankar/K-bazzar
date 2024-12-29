@@ -35,7 +35,7 @@ const otpSchema = new mongoose.Schema({
     },
 });
 
-otpSchema.index({ email: 1 }, { unique: true }); // Ensure unique index on email field
+
 
 const OTP = mongoose.model('OTP', otpSchema);
 

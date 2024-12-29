@@ -10,6 +10,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { IoIosStar } from "react-icons/io";
 import { FaCartArrowDown } from "react-icons/fa6";
+import API_URL from "../constants";
 
 // import background from '../images/bk4.jpg'
 
@@ -27,7 +28,7 @@ function Home() {
 
 
     useEffect(() => {
-        const url = 'http://localhost:4000/get-products';
+        const url = API_URL + '/get-products';
         axios.get(url)
             .then((res) => {
 
@@ -51,7 +52,7 @@ function Home() {
     const handleClick = () => {
         // Construct the URL with just the search term
         const searchQuery = search;
-        const url = `http://localhost:4000/search?search=${searchQuery}`;
+        const url = API_URL + `/search?search=${searchQuery}`;
     
         // Perform the API request to fetch products
         axios.get(url)
@@ -92,7 +93,7 @@ function Home() {
             return;
         }
 
-        const url = 'http://localhost:4000/like-product';
+        const url = API_URL + '/like-product';
         const data = { userId, productId }
 
         axios.post(url, data)
@@ -215,7 +216,7 @@ function Home() {
                     >
                         <div className="item-pic">
                             <img
-                                src={'http://localhost:4000/' + product.pimage}
+                                src={API_URL + '/' + product.pimage}
                                 alt={product.pname}
                                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                             />

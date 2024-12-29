@@ -5,6 +5,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import './Home.css';
 import './SearchPage.css'
+import API_URL from "../constants";
 
 
 function SearchPage() {
@@ -17,7 +18,7 @@ function SearchPage() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const url = `http://localhost:4000/search?search=${searchTerm}`;
+        const url = API_URL + `/search?search=${searchTerm}`;
         // Fetch search results from backend
         axios.get(url)
             .then((res) => {

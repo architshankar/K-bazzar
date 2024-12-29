@@ -302,6 +302,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import API_URL from '../constants';
 
 const OtpVerify = ({ email }) => { // Accept email as a prop
     const [otp1, setOtp1] = useState('');
@@ -316,7 +317,7 @@ const OtpVerify = ({ email }) => { // Accept email as a prop
         if (otp.length === 4) {
             // Call the API to verify the OTP
             axios
-                .post('http://localhost:4000/verify-otp', { email, otp }) // Include email in the request
+                .post(API_URL + '/verify-otp', { email, otp }) // Include email in the request
                 .then((response) => {
                     alert(response.data.message); // Show success message
                     // Navigate to another page or handle success

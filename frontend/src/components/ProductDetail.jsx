@@ -9,6 +9,7 @@ import { FaRegHeart } from "react-icons/fa";
 import './Home.css';
 import { FaRegBookmark } from "react-icons/fa6";
 import { MdBookmarkAdd } from "react-icons/md";
+import API_URL from "../constants";
 
 function ProductDetail() {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ function ProductDetail() {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await axios.get(`http://localhost:4000/get-product/${productId}`);
+                const response = await axios.get(API_URL + `/${productId}`);
                 if (response.data.product) {
                     setProduct(response.data.product);
                 }
@@ -35,7 +36,7 @@ function ProductDetail() {
     const handleContact = async (addedBy) => {
         
         try {
-            const response = await axios.get(`http://localhost:4000/get-user/${addedBy}`);
+            const response = await axios.get(API_URL + `/get-user/${addedBy}`);
             if (response.data.user) {
                 setUser(response.data.user);
             }
@@ -55,7 +56,7 @@ function ProductDetail() {
         }
 
         try {
-            const response = await axios.post("http://localhost:4000/like-product", { userId, productId });
+            const response = await axios.post(API_URL + "/like-product", { userId, productId });
             if (response.data) {
                 alert("Product liked successfully!");
             }
@@ -86,7 +87,7 @@ function ProductDetail() {
                                                 className="d-block w-100 rounded-image"
                                                 width="500px"
                                                 height="350px"
-                                                src={`http://localhost:4000/${product.pimage}`}
+                                                src={API_URL + `/${product.pimage}`}
                                                 alt="Product Image unavailable"
                                             />
                                         </div>
@@ -96,7 +97,7 @@ function ProductDetail() {
                                                     className="d-block w-100 rounded-image"
                                                     width="500px"
                                                     height="350px"
-                                                    src={`http://localhost:4000/${product.pimage2}`}
+                                                    src={API_URL + `/${product.pimage2}`}
                                                     alt="Second Product Image unavailable"
                                                 />
                                             </div>

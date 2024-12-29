@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Header from "./Header";
 import axios from "axios";
+import API_URL from "../constants";
 
 
 function MyProfile() {
@@ -9,7 +10,7 @@ function MyProfile() {
     const [user, setuser] = useState({})
 
     useEffect(() => {
-        let url = 'http://localhost:4000/my-profile/' + localStorage.getItem('userId');
+        let url = API_URL + '/my-profile/' + localStorage.getItem('userId');
         ;
         axios.get(url)
             .then((res) => {

@@ -3,6 +3,7 @@ import Header from "./Header";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import FormSignup from "./formSignup";
+import API_URL from "../constants";
 
 
 function Signup() {
@@ -22,7 +23,7 @@ function Signup() {
    
     const handleApi = () => {
         
-        const url = 'http://localhost:4000/signup';
+        const url = API_URL + '/signup';
         const data = { username, password, email, mobile }
         axios.post(url, data)
             .then((res) => {

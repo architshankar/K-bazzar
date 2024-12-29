@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import Form from "./form";
 import Card from "./card";
+import API_URL from "../constants";
 
 function Login() {
     const navigate = useNavigate(); //hook funtion 
@@ -17,7 +18,7 @@ function Login() {
     const handleApi = () => {
 
 
-        const url = 'http://localhost:4000/login';
+        const url = API_URL + '/login';
         const data = { username, password }
 
         axios.post(url, data)

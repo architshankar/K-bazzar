@@ -6,6 +6,7 @@ import Catagories from "./Catagories";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import './Home.css';
 import { MdDelete } from "react-icons/md";
+import API_URL from "../constants";
 
 
 function MyProducts() {
@@ -28,7 +29,7 @@ function MyProducts() {
 
 
     useEffect(() => {
-        const url = 'http://localhost:4000/my-products';
+        const url = API_URL + '/my-products';
 
         let data = { userId: localStorage.getItem('userId') }
 
@@ -50,7 +51,7 @@ function MyProducts() {
 
     const handleDelete = (productId) => {
         const userId = localStorage.getItem('userId');
-        const url = `http://localhost:4000/delete-product/${productId}`;
+        const url = API_URL + `/delete-product/${productId}`;
     
         // Confirm before deletion
         if (window.confirm('Are you sure you want to delete this product?')) {
@@ -90,7 +91,7 @@ function MyProducts() {
     const handleClick = () => {
                 // Construct the URL with just the search term
                 const searchQuery = search;
-                const url = `http://localhost:4000/search?search=${searchQuery}`;
+                const url = API_URL + `/search?search=${searchQuery}`;
             
                 // Perform the API request to fetch products
                 axios.get(url)
@@ -123,7 +124,7 @@ function MyProducts() {
     const handleLike = (productId) => {
         let userId = localStorage.getItem('userId');
         
-        const url = 'http://localhost:4000/like-product';
+        const url = API_URL + '/like-product';
         const data = { userId, productId }
 
         axios.post(url, data)
@@ -153,7 +154,7 @@ function MyProducts() {
                                     <FaHeart className="icons" />
 
                                 </div>
-                                <img width="300px" height="200px" src={'http://localhost:4000/' + item.pimage} alt="L" />
+                                <img width="300px" height="200px" src={API_URL + '/' + item.pimage} alt="L" />
 
                                 <p className="m-2">  {item.pname} | {item.catagory}</p>
                                 <h3 className="m-2 text-danger"  >  {item.price} </h3>
@@ -176,7 +177,7 @@ function MyProducts() {
                         >
                             <div className="item-pic">
                                 <img
-                                    src={`http://localhost:4000/${product.pimage}`}
+                                    src={API_URL + `/${product.pimage}`}
                                     alt={product.pname}
                                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                 />
