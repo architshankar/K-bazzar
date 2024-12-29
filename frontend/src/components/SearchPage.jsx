@@ -61,7 +61,7 @@ function SearchPage() {
                                 {cproducts.map((item) => (
                                     <div key={item._id} className="cat-item" onClick={() => handleProduct(item._id)} style={{ cursor: 'pointer' }}>
                                         <div className="item-pic">
-                                            <img src={`http://localhost:4000/${item.pimage}`} alt={item.pname} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                            <img src={API_URL + `/${item.pimage}`} alt={item.pname} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                         </div>
                                         <div className="item-info">
                                             <div className="item-name" style={{ fontFamily: 'DMSans_36pt-Medium', color: 'black' }}>
