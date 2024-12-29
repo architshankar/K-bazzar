@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Catagories from "./Catagories";
 import './Home.css';
+import API_URL from "../constants";
 
 function LikedProducts() {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ function LikedProducts() {
     useEffect(() => {
         const fetchLikedProducts = async () => {
             try {
-                const url = 'http://localhost:4000/liked-products';
+                const url = API_URL + '/liked-products';
                 const data = { userId: localStorage.getItem('userId') };
                 const res = await axios.post(url, data);
 
@@ -56,7 +57,7 @@ function LikedProducts() {
         >
             <div className="item-pic">
                 <img
-                    src={`http://localhost:4000/${product.pimage}`}
+                    src={API_URL + `/${product.pimage}`}
                     alt={product.pname}
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
@@ -77,7 +78,7 @@ function LikedProducts() {
     const handleClick = () => {
             // Construct the URL with just the search term
             const searchQuery = search;
-            const url = `http://localhost:4000/search?search=${searchQuery}`;
+            const url = API_URL + `/search?search=${searchQuery}`;
         
             // Perform the API request to fetch products
             axios.get(url)

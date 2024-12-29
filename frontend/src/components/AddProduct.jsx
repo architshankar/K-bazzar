@@ -8,6 +8,7 @@ import './addProduct.css'
 import SuccessAlert from "./SuccessAlert";
 import CustomFileUpload from "./uploadpic";
 import UploadForm from "./uploadpic";
+import API_URL from "../constants";
 
 function AddProduct() {
 
@@ -133,7 +134,7 @@ function AddProduct() {
                 formData.append('hostelNumber', hostelNumber);
             }
     
-            const url = 'http://localhost:4000/add-product';
+            const url = API_URL + '/add-product';
             axios
                 .post(url, formData)
                 .then((res) => {

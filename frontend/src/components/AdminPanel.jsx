@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import AdminLogin from './AdminLogin'; // Ensure this file exists
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // For navigation
+import API_URL from '../constants';
 
 const AdminPanel = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false); // Manage authentication state
@@ -16,7 +17,7 @@ const AdminPanel = () => {
         const token = localStorage.getItem('adminToken');
         if (token) {
             axios
-                .get('http://localhost:4000/admin/products', {
+                .get(API_URL + '/admin/products', {
                     headers: { Authorization: `Bearer ${token}` },
                 })
                 .then(() => setIsAuthenticated(true)) // Set authenticated state
@@ -28,7 +29,7 @@ const AdminPanel = () => {
     useEffect(() => {
         if (isAuthenticated) {
             axios
-                .get('http://localhost:4000/admin/products', {
+                .get(API_URL + '/admin/products', {
                     headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` },
                 })
                 .then((res) => {
@@ -45,7 +46,7 @@ const AdminPanel = () => {
 
     const approveProduct = (id) => {
         axios
-            .put(`http://localhost:4000/admin/products/${id}/approve`, null, {
+            .put(API_URL + `/admin/products/${id}/approve`, null, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` },
             })
             .then(() => {
@@ -64,7 +65,7 @@ const AdminPanel = () => {
 
     const rejectProduct = (id, userId) => {
         axios
-            .delete(`http://localhost:4000/admin/products/${id}/reject`, {
+            .delete(API_URL + `/admin/products/${id}/reject`, {
                 data: { userId }, // Pass userId in the request body
                 headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` },
             })
@@ -84,7 +85,7 @@ const AdminPanel = () => {
     const sendRejectionNotification = (userId) => {
         axios
             .post(
-                'http://localhost:4000/notifications/reject',
+                API_URL + '/notifications/reject',
                 { userId, message: 'Your product has been rejected by the admin.' },
                 { headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` } }
             )
@@ -99,7 +100,7 @@ const AdminPanel = () => {
     const deleteProduct = (id) => {
         if (window.confirm('Are you sure you want to delete this product?')) {
             axios
-                .delete(`http://localhost:4000/admin/products/${id}/delete`, {
+                .delete(API_URL + `/admin/products/${id}/delete`, {
                     headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` },
                 })
                 .then(() => {
@@ -154,7 +155,7 @@ const AdminPanel = () => {
                         }}
                     >
                         <img
-                            src={`http://localhost:4000/${product.pimage}`}
+                            src={API_URL + `/${product.pimage}`}
                             alt={product.pname}
                             style={{
                                 width: '100%',

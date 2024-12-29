@@ -6,6 +6,7 @@ import axios from "axios";
 import Catagories from "./Catagories";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import './Home.css';
+import API_URL from "../constants";
 
 
 function CatagoriePage() {
@@ -25,8 +26,8 @@ function CatagoriePage() {
 
     useEffect(() => {
         const url = params.catName
-            ? 'http://localhost:4000/get-products?catName=' + params.catName // If a category is present
-            : 'http://localhost:4000/get-products'; // Fetch all products if category is not provided
+            ? API_URL + '/get-products?catName=' + params.catName // If a category is present
+            : API_URL + '/get-products'; // Fetch all products if category is not provided
 
         
 
@@ -59,7 +60,7 @@ function CatagoriePage() {
    
     const handleClick = () => {
         // Construct the URL for the search request
-        let url = `http://localhost:4000/search?search=${search}`;
+        let url = API_URL + `/search?search=${search}`;
 
         // Check if user location is available in localStorage
         const userLoc = localStorage.getItem('userLoc');
@@ -99,7 +100,7 @@ function CatagoriePage() {
     const handleLike = (productId) => {
         let userId = localStorage.getItem('userId');
         
-        const url = 'http://localhost:4000/like-product';
+        const url = API_URL + '/like-product';
         const data = { userId, productId }
 
         axios.post(url, data)
@@ -169,7 +170,7 @@ function CatagoriePage() {
                             products.map((item) => (
                                 <div key={item._id} className="cat-item" onClick={() => handleProduct(item._id)} style={{ cursor: 'pointer' }}>
                                     <div className="item-pic">
-                                        <img src={`http://localhost:4000/${item.pimage}`} alt={item.pname} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                        <img src={API_URL + `/${item.pimage}`} alt={item.pname} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                     </div>
                                     <div className="item-info">
                                         <div className="item-name" style={{ fontFamily: 'DMSans_36pt-Medium' }}>
@@ -200,7 +201,7 @@ function CatagoriePage() {
                                 
                                 <div key={item._id} className="cat-item" onClick={() => handleProduct(item._id)} style={{ cursor: 'pointer' }}>
                                     <div className="item-pic">
-                                        <img src={`http://localhost:4000/${item.pimage}`} alt={item.pname} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                        <img src={API_URL + `/${item.pimage}`} alt={item.pname} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                     </div>
                                     <div className="item-info">
                                         <div className="item-name" style={{ fontFamily: 'DMSans_36pt-Medium' }}>
