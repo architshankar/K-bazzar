@@ -24,21 +24,34 @@ function Home() {
     const [allProducts, setAllProducts] = useState([]); // For original product list
     const [issearch, setissearch] = useState(); // checking if the value is coming for serach bar
 
-
+    const [showMessage, setShowMessage] = useState(true); // State to control the visibility of the message
 
 
     useEffect(() => {
         const url = API_URL + '/get-products';
+
+        // Check if the server has recently been active
+        const serverRefreshedAt = localStorage.getItem('serverRefreshedAt');
+        const isServerActive = serverRefreshedAt && (Date.now() - Number(serverRefreshedAt)) < 10 * 60 * 1000; // 10 minutes threshold
+
+        if (!isServerActive) {
+            setShowMessage(true); // Show the message if the server is potentially inactive
+        }
+
         axios.get(url)
             .then((res) => {
 
                 if (res.data.product) {   //this data is coming from backend has the name product and not products 
                     setproducts(res.data.product); // set the data into the array products 
                     setAllProducts(res.data.product); // Set original products
+
+                    // Set server refresh time in local storage
+                    localStorage.setItem('serverRefreshedAt', Date.now().toString());
+                    setShowMessage(false); // Hide the message since the server is active
                 }
             })
             .catch((err) => {
-                
+
                 alert('Server couldent fetch products')
             })
     }, []);
@@ -53,27 +66,27 @@ function Home() {
         // Construct the URL with just the search term
         const searchQuery = search;
         const url = API_URL + `/search?search=${searchQuery}`;
-    
+
         // Perform the API request to fetch products
         axios.get(url)
             .then((res) => {
-                
+
                 // Assuming you're storing the fetched products in the state
                 setcproducts(res.data.products);
                 setissearch(true); // Set the search value to true so that the searched products are displayed
-    
+
                 // Navigate to the search results page with the search term
                 navigate(`/search?search=${searchQuery}`);  // Redirect to '/search-results' page
             })
             .catch((err) => {
-                
+
                 alert('Server couldn\'t fetch products');
             });
     };
-    
+
 
     const handleCatagory = (value) => {
-        
+
 
         let filteredProducts = allProducts.filter((item) => {
             if (item.catagory.toLowerCase() == (value.toLowerCase())) {
@@ -103,7 +116,7 @@ function Home() {
                 }
             })
             .catch((err) => {
-                
+
                 alert('Server couldent fetch products')
             })
     }
@@ -144,48 +157,6 @@ function Home() {
 
     };
 
-
-    // rendercatagory 
-    // const renderCategoryItems = (category) => {
-    //     let filteredProducts;
-
-    //     if (category) {
-    //         // Filter products by category
-    //         filteredProducts = allProducts.filter(
-    //             (product) => product.catagory?.toLowerCase() === category.toLowerCase()
-    //         );
-    //     } else {
-    //         // If no category is provided, show all products
-    //         filteredProducts = allProducts;
-    //     }
-    //     // Get only the first 3 products
-    //     const topProducts = filteredProducts.slice(0, 3);
-
-    //     return (
-    //         <div className="cat-items" >
-    //             {topProducts.map((product) => (
-    //                 <div key={product._id} className="cat-item" onClick={() => handleProduct(product._id)} // Add onClick handler here
-    //                     style={{ cursor: 'pointer' }} >
-    //                     <div className="item-pic">
-    //                         <img
-    //                             src={'http://localhost:4000/' + product.pimage}
-    //                             alt={product.pname}
-    //                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-    //                         />
-    //                     </div>
-    //                     <div className="item-info">
-    //                         <div className="item-name" style={{ fontFamily: 'DMSans_36pt-Medium' }}>{product.pname}</div>
-    //                         <div className="item-price" style={{ fontFamily: 'DMSans_36pt-Medium' }}>Rs. {product.price} /-</div>
-    //                     </div>
-    //                 </div>
-    //             ))}
-    //             {/* If no products exist */}
-    //             {topProducts.length === 0 && (
-    //                 <div className="cat-item">No Products Available</div>
-    //             )}
-    //         </div>
-    //     );
-    // };
 
     const renderCategoryItems = (category) => {
         let filteredProducts;
@@ -239,114 +210,152 @@ function Home() {
         );
     };
 
-    
+
 
     return (
         <div className="home-parent-parent" >
             {localStorage.getItem('token') ?
-                    <div className="add-prod-bottom">
+                <div className="add-prod-bottom">
 
 
-                        <div className="cards">
-                            <div className="grid-container">
+                    <div className="cards">
+                        <div className="grid-container">
 
-                                <div className={`row-1 ${isVisible ? "visible" : "hidden"} `}>
+                            <div className={`row-1 ${isVisible ? "visible" : "hidden"} `}>
+                                <div
+                                    className="card red"
+                                    onClick={() => navigate('/add-product')}
+                                    style={{ cursor: 'pointer' }}
+                                >
                                     <div
-                                        className="card red"
-                                        onClick={() => navigate('/add-product')}
-                                        style={{ cursor: 'pointer' }}
+                                        style={{
+                                            color: 'black',
+                                            padding: '10px',
+                                            fontSize: '18px',
+                                            fontFamily: 'DMSans_36pt-Medium',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                        }}
                                     >
-                                        <div
-                                            style={{
-                                                color: 'black',
-                                                padding: '10px',
-                                                fontSize: '18px',
-                                                fontFamily: 'DMSans_36pt-Medium',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                            }}
-                                        >
-                                            <MdOutlineAddShoppingCart size={25} style={{ marginRight: '10px' }} /> Add Product
-                                        </div>
+                                        <MdOutlineAddShoppingCart size={25} style={{ marginRight: '10px' }} /> Add Product
                                     </div>
                                 </div>
-
-                                <div className={`row-2-left ${isVisible ? "visible" : "hidden"}`}>
-
-                                    <div
-                                        className="card blue"
-                                        onClick={() => navigate('/liked-products')}
-                                        style={{ cursor: 'pointer' }}
-                                    >
-                                        <div
-                                            style={{
-                                                color: 'black',
-                                                padding: '10px',
-                                                fontSize: '18px',
-                                                fontFamily: 'DMSans_36pt-Medium',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                            }}
-                                        >
-                                            <IoIosStar size={25} style={{ marginRight: '10px' }} /> Favourites
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="row-2-right">
-                                    <button
-                                        className={`button-container ${isVisible ? "rotated" : ""}`}
-                                        onClick={handleButtonClick}
-                                        title="Add New"
-                                    >
-                                        <svg
-                                            className="button-icon"
-                                            viewBox="0 0 24 24"
-                                            height="50px"
-                                            width="50px"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                strokeWidth="1.5"
-                                                d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
-                                            ></path>
-                                            <path strokeWidth="1.5" d="M8 12H16"></path>
-                                            <path strokeWidth="1.5" d="M12 16V8"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-
-                                <div className={`row-3 ${isVisible ? "visible" : "hidden"}`}>
-                                    
-                                    <div
-                                        className="card blue"
-                                        onClick={() => navigate('/my-products')}
-                                        style={{ cursor: 'pointer' }}
-                                    >
-                                        <div
-                                            style={{
-                                                color: 'black',
-                                                padding: '10px',
-                                                fontSize: '18px',
-                                                fontFamily: 'DMSans_36pt-Medium',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                            }}
-                                        >
-                                            <FaCartArrowDown size={25} style={{ marginRight: '10px' }} /> My Products
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
+
+                            <div className={`row-2-left ${isVisible ? "visible" : "hidden"}`}>
+
+                                <div
+                                    className="card blue"
+                                    onClick={() => navigate('/liked-products')}
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    <div
+                                        style={{
+                                            color: 'black',
+                                            padding: '10px',
+                                            fontSize: '18px',
+                                            fontFamily: 'DMSans_36pt-Medium',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                        }}
+                                    >
+                                        <IoIosStar size={25} style={{ marginRight: '10px' }} /> Favourites
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="row-2-right">
+                                <button
+                                    className={`button-container ${isVisible ? "rotated" : ""}`}
+                                    onClick={handleButtonClick}
+                                    title="Add New"
+                                >
+                                    <svg
+                                        className="button-icon"
+                                        viewBox="0 0 24 24"
+                                        height="50px"
+                                        width="50px"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            strokeWidth="1.5"
+                                            d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                                        ></path>
+                                        <path strokeWidth="1.5" d="M8 12H16"></path>
+                                        <path strokeWidth="1.5" d="M12 16V8"></path>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div className={`row-3 ${isVisible ? "visible" : "hidden"}`}>
+
+                                <div
+                                    className="card blue"
+                                    onClick={() => navigate('/my-products')}
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    <div
+                                        style={{
+                                            color: 'black',
+                                            padding: '10px',
+                                            fontSize: '18px',
+                                            fontFamily: 'DMSans_36pt-Medium',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                        }}
+                                    >
+                                        <FaCartArrowDown size={25} style={{ marginRight: '10px' }} /> My Products
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
+                    </div>
 
-                    </div> :
-                    <div> </div>
-                }
+                </div> :
+                <div> </div>
+            }
             <div className="home-parent-cover">
+                {/* The message div */}
+                {showMessage && (
+                    <div style={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)', // Semi-transparent black background
+                        color: 'white',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        flexDirection: 'column',
+                        zIndex: 1000,
+                    }}>
+                        <div style={{
+                            maxWidth: '80%',
+                            textAlign: 'center',
+                            padding: '20px',
+                            borderRadius: '8px',
+                            border: '1px solid white',
+                        }}>
+                            <p style={{ fontSize: '18px', marginBottom: '20px' }}>
+                                The backend is deployed on a budget-friendly server. Please refresh the page in approximately 30 seconds if you don't see any products on the website. (Helps the server refresh). Thanks!
+                            </p>
+                            <button onClick={() => setShowMessage(false)} style={{
+                                padding: '10px 20px',
+                                backgroundColor: 'white',
+                                color: 'black',
+                                border: 'none',
+                                borderRadius: '5px',
+                                cursor: 'pointer',
+                            }}>
+                                Close ✖
+                            </button>
+                        </div>
+                    </div>
+                )}
 
-            
 
                 <div className="home-parent" style={{ backgroundImage: `url(${background})` }}>
                     <div className=""><Header search={search} handlesearch={handlesearch} handleClick={handleClick} /></div>
@@ -357,48 +366,18 @@ function Home() {
                         <div className="intro-l2" style={{ fontFamily: 'DMSans_36pt-Medium' }}> for great prices and better deals.. </div>
                     </div>
 
-                    {/* {issearch && cproducts &&
-                        <h5>SEARCH RESULTS
-                            <button className="clear-btn" onClick={() => setissearch(false)}> CLEAR </button>
-                        </h5>}
-                    {issearch && cproducts && cproducts.length == 0 && <h5> NO RESULTS FOUND </h5>}
-
-                    {issearch && <div className="d-flex justify-content-center flex-wrap">
-                        {cproducts && products.length > 0 &&
-                            cproducts.map((item, index) => {
-                                return (
-                                    <div key={item._id} className="card m-3">
-                                        <div onClick={() => handleLike(item._id)} className="icon-con">
-
-                                            <FaHeart className="icons" />
-
-                                        </div>
-                                        <img width="300px" height="200px" src={'http://localhost:4000/' + item.pimage} alt="L" />
-
-                                        <p className="m-2">  {item.pname} | {item.catagory}</p>
-                                        <h3 className="m-2 text-danger" >Rs.  {item.price} /- </h3>
-                                        <p className="m-2 text-success">  {item.pdesc} </p>
-
-                                    </div>
-                                )
-                            })}
-                    </div>} */}
-
-                    
-                    
-
 
                 </div>
-                
+
             </div>
-            
+
 
 
             <div className="home-cat">
                 {/* All Products Section */}
                 <div className="cat-electric-outer">
                     <div className="cat-heading" style={{ fontFamily: 'Satoshi-Bold' }}>
-                        Latest Deals 
+                        Latest Deals
                     </div>
                     <div className="cat-subheading" style={{ fontFamily: 'Satoshi-Bold' }}>
                         <Link to="/catagory/" className="see-more-link">
@@ -444,7 +423,7 @@ function Home() {
                     </div>
                     {renderCategoryItems('Household')}
                 </div>
-                
+
 
 
 

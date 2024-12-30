@@ -178,7 +178,7 @@ const FormSignup = () => {
                                     required
                                 />
                                 <span>OTP</span>
-                                <span> Cheack your spam folder </span>
+                                
                                 <span style={{fontFamily: 'DMSans_36pt-Medium'}} > *Check your spam folder </span>
                             </label>
 
