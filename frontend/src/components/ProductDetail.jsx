@@ -34,7 +34,8 @@ function ProductDetail() {
     }, [productId]);
 
     const handleContact = async (addedBy) => {
-        
+
+
         try {
             const response = await axios.get(API_URL + `/get-user/${addedBy}`);
             if (response.data.user) {
@@ -181,10 +182,27 @@ function ProductDetail() {
                                     Show Contact
                                 </button>
                                 {localStorage.getItem("token") && user && (
-                                    <div className="show-contact-info-container">
+                                    <div className="show-contact-info-container" style={{ fontFamily: 'DMSans_36pt-Medium' }}>
+
                                         {user.Username && <h4>Name: {user.Username}</h4>}
                                         {user.mobile && <h4>Phone: {user.mobile}</h4>}
-                                        {user.email && <h4>Email: {user.email}</h4>}
+                                        {/* {user.email && <h4>Email: {user.email}</h4>} */}
+                                        {user.email && (
+                                            <h4>
+                                                Email : 
+                                                <a
+                                                    href={`mailto:${user.email}`}
+                                                    
+                                                    onMouseOver={(e) => e.target.style.textDecoration = 'underline'}
+                                                    onMouseOut={(e) => e.target.style.textDecoration = 'none'}
+                                                >
+                                                    {user.email}
+                                                </a>
+                                            </h4>
+                                        )}
+
+
+                                        {product.hostel && <h4>Hostel: {product.hostel.name} {product.hostel.number}</h4>}
                                     </div>
                                 )}
                             </div>
