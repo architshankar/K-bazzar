@@ -51,11 +51,11 @@ function Header(props) {
         <div
             className="parent-header"
             style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100%',
-                zIndex: 1000,
+                // position: 'fixed',
+                // top: 0,
+                // left: 0,
+                // width: '100%',
+                // zIndex: 1000,
 
                 transform: isHidden ? 'translateY(-100%)' : 'translateY(0)',
                 transition: 'transform 0.3s ease',
@@ -64,18 +64,18 @@ function Header(props) {
             <div className='header-container d-flex justify-content-between'>
                 <div className="header">
                     <button
-                        className="btn"
-                        style={{
-                            fontFamily: 'Sansation_Regular',
-                            backgroundColor: 'transparent',
-                            border: 'none',
-                            color: 'white',
-                            textDecoration: 'none',
-                            cursor: 'pointer',
-                            fontSize: '35px',
-                            outline: 'none',
-                            boxShadow: 'none',
-                        }}
+                        className="btn-k"
+                        // style={{
+                        //     fontFamily: 'Sansation_Regular',
+                        //     backgroundColor: 'transparent',
+                        //     border: 'none',
+                        //     color: 'white',
+                        //     textDecoration: 'none',
+                        //     cursor: 'pointer',
+                        //     fontSize: '35px',
+                        //     outline: 'none',
+                        //     boxShadow: 'none',
+                        // }}
                         onClick={() => window.location.href = '/'}
                     >
                         Kbazzar
@@ -83,6 +83,21 @@ function Header(props) {
                     {/* <input className="search" type="text"
                         value={props && props.search}
                         onChange={(e) => props.handlesearch && props.handlesearch(e.target.value)} /> */}
+                    {/* <input
+                        className="search"
+                        type="text"
+                        value={props && props.search}
+                        style={{ fontFamily: 'work-sans.regular' }}
+                        onChange={(e) => props.handlesearch && props.handlesearch(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                                props.handleClick && props.handleClick(); // Trigger the search button's click handler
+                            }
+                        }}
+                    />
+                    <button className='search-btn' onClick={() => props.handleClick && props.handleClick()}> <FaSearch /> </button> */}
+                </div>
+                <div style={{paddingTop : '10px'}}>
                     <input
                         className="search"
                         type="text"
@@ -95,9 +110,10 @@ function Header(props) {
                             }
                         }}
                     />
-                    <button className='search-btn' onClick={() => props.handleClick && props.handleClick()}> <FaSearch /> </button>
-                </div>
-                <div style={{ paddingTop: '8px', paddingRight: '6px' }}>
+                    
+                </div >
+                <div style={{paddingTop : '10px'}}><button className='search-btn' onClick={() => props.handleClick && props.handleClick()}> <FaSearch /> </button></div>
+                <div className='user-profile' >
                     <div
                         onClick={() => {
                             setShowOver(!showOver);

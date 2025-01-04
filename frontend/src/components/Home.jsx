@@ -316,7 +316,7 @@ function Home() {
                 <div> </div>
             }
             <div className="home-parent-cover">
-                {/* The message div */}
+                {/* The server refresh message div */}
                 {showMessage && (
                     <div style={{
                         position: 'fixed',
