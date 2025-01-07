@@ -253,6 +253,24 @@
 }
 
 
+.login-logout-floater {
+    min-height: 30px;
+    width: 150px;
+    background: #ffff;
+    position: absolute;
+    top: 40px;
+    margin-top: 50px;
+    margin-right: 50px;
+    color: red;
+    font-size: 14px;
+    z-index: 1;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+}
+
+
+
   @media (max-width: 576px) {
     .parent-header {
         
@@ -325,3 +343,52 @@
         padding-left: 8px;
     }
 }
+
+/* Default size for .user-logo */
+.user-logo {
+    font-size: 25px; /* Default size */
+}
+
+/* Adjust size for smaller screens */
+@media (max-width: 576px) {
+    .user-logo {
+        font-size: 20px; /* Smaller size for smaller screens */
+    }
+}
+
+.user-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px; /* Default size */
+    height: 50px; /* Default size */
+    border-radius: 50%;
+    background: #76767676;
+    color: #fff;
+    font-size: 14px; /* Default font size */
+    cursor: pointer;
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 576px) {
+    .user-circle {
+        width: 40px; /* Smaller size */
+        height: 40px; /* Smaller size */
+        
+    }
+    .login-logout-floater{
+        top: 20px;
+        margin-left: -80px;
+        width: 90px;
+        height: 1px;
+        font-size: 12px;
+    }
+    .logout-btn{
+        height: 30px;
+        padding-left: 25px;
+    }
+    .cat-container-outer{
+        width: 102vw;
+    }
+}
+

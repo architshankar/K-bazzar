@@ -115,39 +115,27 @@ function Header(props) {
                 <div style={{paddingTop : '10px'}}><button className='search-btn' onClick={() => props.handleClick && props.handleClick()}> <FaSearch /> </button></div>
                 <div className='user-profile' >
                     <div
+                    className="user-circle"
                         onClick={() => {
                             setShowOver(!showOver);
                         }}
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            width: '50px',
-                            height: '50px',
-                            borderRadius: '50%',
-                            background: '#76767676',
-                            color: '#fff',
-                            fontSize: '14px',
-                            cursor: 'pointer',
-                        }}>
-                        <FaUser size={25} />
+                        // style={{
+                        //     display: 'flex',
+                        //     justifyContent: 'center',
+                        //     alignItems: 'center',
+                        //     width: '50px',
+                        //     height: '50px',
+                        //     borderRadius: '50%',
+                        //     background: '#76767676',
+                        //     color: '#fff',
+                        //     fontSize: '14px',
+                        //     cursor: 'pointer',
+                        // }}
+                        >
+                        <FaUser className='user-logo'  />
                     </div>
 
-                    {showOver && <div style={{
-                        minHeight: '30px',
-                        width: '150px',
-                        background: '#ffff',
-                        position: 'absolute',
-                        top: '40px',
-                        marginTop: '50px',
-                        marginRight: '50px',
-                        color: 'red',
-                        fontSize: '14px',
-                        zIndex: 1,
-                        borderRadius: '7px',
-                        display: 'flex',
-                        justifyContent: 'center'
-                    }}>
+                    {showOver && <div className='login-logout-floater'>
 
                         <div>
                             {!localStorage.getItem('token') ? (

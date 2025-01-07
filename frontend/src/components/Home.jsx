@@ -228,14 +228,15 @@ function Home() {
                                     style={{ cursor: 'pointer' }}
                                 >
                                     <div
-                                        style={{
-                                            color: 'black',
-                                            padding: '10px',
-                                            fontSize: '18px',
-                                            fontFamily: 'DMSans_36pt-Medium',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                        }}
+                                        className="card-text"
+                                        // style={{
+                                        //     color: 'black',
+                                        //     padding: '10px',
+                                        //     fontSize: '18px',
+                                        //     fontFamily: 'DMSans_36pt-Medium',
+                                        //     display: 'flex',
+                                        //     alignItems: 'center',
+                                        // }}
                                     >
                                         <MdOutlineAddShoppingCart size={25} style={{ marginRight: '10px' }} /> Add Product
                                     </div>
@@ -250,14 +251,15 @@ function Home() {
                                     style={{ cursor: 'pointer' }}
                                 >
                                     <div
-                                        style={{
-                                            color: 'black',
-                                            padding: '10px',
-                                            fontSize: '18px',
-                                            fontFamily: 'DMSans_36pt-Medium',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                        }}
+                                    className="card-text"
+                                        // style={{
+                                        //     color: 'black',
+                                        //     padding: '10px',
+                                        //     fontSize: '18px',
+                                        //     fontFamily: 'DMSans_36pt-Medium',
+                                        //     display: 'flex',
+                                        //     alignItems: 'center',
+                                        // }}
                                     >
                                         <IoIosStar size={25} style={{ marginRight: '10px' }} /> Favourites
                                     </div>
@@ -295,14 +297,15 @@ function Home() {
                                     style={{ cursor: 'pointer' }}
                                 >
                                     <div
-                                        style={{
-                                            color: 'black',
-                                            padding: '10px',
-                                            fontSize: '18px',
-                                            fontFamily: 'DMSans_36pt-Medium',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                        }}
+                                    className="card-text"
+                                        // style={{
+                                        //     color: 'black',
+                                        //     padding: '10px',
+                                        //     fontSize: '18px',
+                                        //     fontFamily: 'DMSans_36pt-Medium',
+                                        //     display: 'flex',
+                                        //     alignItems: 'center',
+                                        // }}
                                     >
                                         <FaCartArrowDown size={25} style={{ marginRight: '10px' }} /> My Products
                                     </div>

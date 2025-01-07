@@ -26,9 +26,9 @@ html {
     position: relative;
     width: 80px;
     height: 80px;
-  }
-  
-  .lds-hourglass:after {
+}
+
+.lds-hourglass:after {
     content: " ";
     display: block;
     border-radius: 50%;
@@ -39,24 +39,24 @@ html {
     border: 32px solid #fff;
     border-color: #fff transparent #fff transparent;
     animation: lds-hourglass 1.2s infinite;
-  }
-  
-  @keyframes lds-hourglass {
+}
+
+@keyframes lds-hourglass {
     0% {
-      transform: rotate(0);
-      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+        transform: rotate(0);
+        animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
     }
-  
+
     50% {
-      transform: rotate(900deg);
-      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        transform: rotate(900deg);
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     }
-  
+
     100% {
-      transform: rotate(1800deg);
+        transform: rotate(1800deg);
     }
-  }
-  
+}
+
 
 /* @keyframes spin {
     0% { transform: rotate(0deg); }
@@ -71,12 +71,15 @@ html {
 }
 
 .content-wrapper {
-    transition: filter 0.3s ease; /* Smooth transition for blur effect */
+    transition: filter 0.3s ease;
+    /* Smooth transition for blur effect */
 }
 
 .content-wrapper.blurred {
-    filter: blur(5px); /* Adjust the blur intensity as needed */
-    pointer-events: none; /* Prevent interaction with blurred content */
+    filter: blur(5px);
+    /* Adjust the blur intensity as needed */
+    pointer-events: none;
+    /* Prevent interaction with blurred content */
 }
 
 .centered-success-alert {
@@ -85,7 +88,7 @@ html {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
-    
+
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
     border-radius: 8px;
@@ -804,18 +807,12 @@ html {
 
 
 .add-prod-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150vh; /* Adjust height to your needs */
     position: fixed;
-    /* Use fixed positioning to make it sticky */
-    bottom: -173px;
-    /* Distance from the bottom of the viewport */
-    left: 890px;
-    /* Distance from the left of the viewport */
-    padding: 10px;
-    /* Add padding inside the element */
-    color: white;
-    /* Text color */
-    border-radius: 5px;
-    /* Optional: Rounded corners */
+   left: 900px;
 
     z-index: 1000;
     /* Ensure it stays above other elements */
@@ -939,13 +936,27 @@ html {
 }
 
 
+.card-text {
+    color: black;
+    padding: 10px;
+    font-size: 18px;
+    font-family: 'DMSans_36pt-Medium', sans-serif;
+    display: flex;
+    align-items: center;
+}
+
 @media (max-width: 576px) {
     .home-parent {
-        background-size: contain; /* Adjusts the image to fit within the element without cropping */
-        background-repeat: no-repeat; /* Prevents tiling of the image */
-        background-position: center; /* Ensures the focal point is centered */
-        height: 120vh; /* Adjust height dynamically based on content */
-        width: 100%; /* Fully responsive width */
+        background-size: contain;
+        /* Adjusts the image to fit within the element without cropping */
+        background-repeat: no-repeat;
+        /* Prevents tiling of the image */
+        background-position: center;
+        /* Ensures the focal point is centered */
+        height: 50vh;
+        /* Adjust height dynamically based on content */
+        width: 130%;
+        /* Fully responsive width */
     }
 
     .intro-l1 {
@@ -955,7 +966,7 @@ html {
         margin-bottom: -15px;
         letter-spacing: -2.5px;
     }
-    
+
     .intro-l2 {
         font-size: 16px;
         font-weight: lighter;
@@ -963,22 +974,143 @@ html {
         text-shadow: 0px 0px 0.1px #484848, 2px 0.5px 2px black;
         letter-spacing: 0.5px;
     }
+
     .intro-text {
         position: absolute;
         /* Use absolute positioning */
-        bottom: 48px;
-        left: 19px;
+        bottom: 520px;
+        left: 12px;
         padding: 10px;
         /* Optional: Add padding inside the corner div */
-    
+
         color: white;
         /* Text color */
         border-radius: 5px;
         /* Optional: Rounded corners */
     }
-    .header-container{
+
+    .header-container {
         width: 100%;
     }
+
+    .cat-item {
+        width: 70vw;
+    }
+
+    .cat-items {
+        width: 77vw;
+    }
+
+    .cat-electric-outer {
+        padding-top: 20px;
+    }
+
+    .add-prod-bottom {
+        left: 140px;
+        bottom: 20vh;
+    }
+
+    .button-icon {
+        width: 30px;
+    }
+
+    .button-container {
+        padding-left: 25px;
+    }
+
+    .cards .card {
+
+        width: 130px;
+        height: 35px;
+    }
+
+    .card-text {
+        font-size: 12px;
+    }
+
+    .row-1 {
+        padding-left: 110px;
+        padding-bottom: 0px;
+        margin-bottom: -12px;
+    }
+
+    .row-2-left {
+        padding-left: 80px;
+        padding-top: 30px;
+    }
+
+    .grid-container {
+        grid-gap: 0px;
+    }
+
+    
 }
 
-  
+
+/* Default styling for .login-background */
+.login-background {
+    background-image: url('../../public/images/login-back12.jpg'); /* Replace with your image URL */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Remove the background image for smaller screens */
+@media (max-width: 576px) {
+    .login-background {
+        background-image: none; /* Remove the background image */
+    }
+
+    .login-contain{
+        background-color: black;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .form-cont{
+        padding-left: 10px;
+        width: 400px;
+        padding-top: 230px;
+    }
+
+    .add-product-form-info{
+        display: block;
+    }
+
+    .addprod{
+        font-size: 50px;
+    }
+
+    .add-product-form-info-left{
+        padding-left: 20px;
+    }
+
+    .upload-pics{
+        display: block;
+        padding-top: 25px;
+    }
+
+    .upload-pic2{
+        padding-top: 30px;
+    }
+
+    .file-preview{
+        display: none;
+    }
+
+    .content-wrapper{
+        padding: 25px;
+        padding-bottom: 90px;
+    }
+
+    .btn-submit{
+        width: 120px;
+        height: 50px;
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    .submit-product{
+        padding-top: 20px;
+    }
+}

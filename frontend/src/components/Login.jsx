@@ -49,7 +49,7 @@ function Login() {
 
     return (
         <div className="login-contain">
-            <div className="login-background" style={{ backgroundImage: `url(${background})` }}>
+            <div className="login-background" >
                 <Header />
 
                 <div className="form-cont">
